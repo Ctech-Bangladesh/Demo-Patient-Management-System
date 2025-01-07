@@ -16,4 +16,6 @@ public interface PatientService {
 
 	public Patient updatePatient(String id, PatientUpdateDTO patientUpdateDTO);
 
+	public Patient getPatient(String id);
+
 }

@@ -19,14 +19,16 @@ public class PatientServiceImp implements  PatientService{
 	@Autowired
 	private PatientRepositoryMongo patientRepository;
 
+	@Override
 	public List<Patient> getAllPatients() {
 		return patientRepository.findAll();
 	}
 
+	@Override
 	public Patient addPatient(Patient patient) {
 		return patientRepository.save(patient);
 	}
-
+	@Override
 	public void deletePatient(String id) {
 		Optional<Patient> patient = patientRepository.findById(id);
 
@@ -35,7 +37,8 @@ public class PatientServiceImp implements  PatientService{
 		}
 		patientRepository.deleteById(id);
 	}
-
+	
+	@Override
 	public Patient updatePatient(String id, PatientUpdateDTO patientUpdateDTO) {
 		Optional<Patient> patientOpt = patientRepository.findById(id);
 		if (!patientOpt.isPresent()) {
@@ -47,6 +50,16 @@ public class PatientServiceImp implements  PatientService{
 		patient.setAge(patientUpdateDTO.getAge());
 
 		return patientRepository.save(patient);
+	}
+
+	@Override
+	public Patient getPatient(String id) {
+		Optional<Patient> patient = patientRepository.findById(id);
+
+		if (!patient.isPresent()) {
+			throw new NoSuchElementException ("Patient with ID " + id + " not found.");
+		}
+		return patient.get();
 	}
 
 }
