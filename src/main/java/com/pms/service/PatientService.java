@@ -2,20 +2,19 @@ package com.pms.service;
 
 import java.util.List;
 
-import com.pms.PatientDTO.PatientDTO;
-import com.pms.entity.Patient;
+import com.pms.patientDTO.PatientDTO;
 
 
 public interface PatientService {
-	
-	public List<Patient> getAllPatients();
 
-	public Patient addPatient(Patient patient);
+    public List<PatientDTO> getAllPatients();
 
-	public void deletePatient(String id);
+    public PatientDTO addPatient(PatientDTO patientDTO);
 
-	public Patient updatePatient(String id, PatientDTO patientUpdateDTO);
+    public void deletePatient(String id);
 
-	public Patient getPatient(String id);
+    public PatientDTO updatePatient(String id, PatientDTO patientUpdateDTO);
+
+    public PatientDTO getPatient(String id);
 
 }

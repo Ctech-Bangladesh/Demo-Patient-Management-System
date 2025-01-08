@@ -1,47 +1,44 @@
 package com.pms.controller;
 
+import com.pms.patientDTO.PatientDTO;
+import com.pms.service.PatientService;
 import java.util.List;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.pms.PatientDTO.PatientDTO;
-import com.pms.entity.Patient;
-import com.pms.service.PatientService;
-
-import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/patient")
 public class PatientController {
 
-    private final PatientService patientService;
+  private final PatientService patientService;
 
-    @GetMapping
-    public ResponseEntity<List<Patient>> getAllPatients() {
-        return ResponseEntity.ok(patientService.getAllPatients());
-    }
-    @GetMapping("/{id}")
-    public ResponseEntity<Patient> getPatient(@PathVariable("id") String id) {
-        return ResponseEntity.ok(patientService.getPatient(id));
-    }
+  @GetMapping
+  public ResponseEntity<List<PatientDTO>> getAllPatients() {
+    return ResponseEntity.ok(patientService.getAllPatients());
+  }
 
-    @PostMapping
-    public ResponseEntity<Patient> addPatient(@RequestBody Patient patient) {
-        return ResponseEntity.ok(patientService.addPatient(patient));
-    }
+  @GetMapping("/{id}")
+  public ResponseEntity<PatientDTO> getPatient(@PathVariable("id") String id) {
+    return ResponseEntity.ok(patientService.getPatient(id));
+  }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletePatient(@PathVariable("id") String id) {
-        patientService.deletePatient(id);
-        return ResponseEntity.ok("Patient with ID " + id + " was successfully deleted.");
-    }
+  @PostMapping
+  public ResponseEntity<PatientDTO> addPatient(@RequestBody PatientDTO patientDTO) {
+    return ResponseEntity.ok(patientService.addPatient(patientDTO));
+  }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Patient> updatePatient(@PathVariable("id") String id,
-                                                 @RequestBody PatientDTO patientUpdateDTO) {
-        Patient updatedPatient = patientService.updatePatient(id, patientUpdateDTO);
-        return ResponseEntity.ok(updatedPatient);
-    }
+  @DeleteMapping("/{id}")
+  public ResponseEntity<String> deletePatient(@PathVariable("id") String id) {
+    patientService.deletePatient(id);
+    return ResponseEntity.ok("Patient with ID " + id + " was successfully deleted.");
+  }
+
+  @PutMapping("/{id}")
+  public ResponseEntity<PatientDTO> updatePatient(
+      @PathVariable("id") String id, @RequestBody PatientDTO patientUpdateDTO) {
+
+    return ResponseEntity.ok(patientService.updatePatient(id, patientUpdateDTO));
+  }
 }
