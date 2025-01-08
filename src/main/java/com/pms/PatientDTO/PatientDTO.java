@@ -15,9 +15,10 @@ import lombok.ToString;
 @ToString
 @Builder
 
-public class PatientUpdateDTO {
+public class PatientDTO {
 	
 	private String name;
+	private String email;
 	private int age;
 
 }

@@ -2,7 +2,7 @@ package com.pms.service;
 
 import java.util.List;
 
-import com.pms.PatientDTO.PatientUpdateDTO;
+import com.pms.PatientDTO.PatientDTO;
 import com.pms.entity.Patient;
 
 
@@ -14,7 +14,7 @@ public interface PatientService {
 
 	public void deletePatient(String id);
 
-	public Patient updatePatient(String id, PatientUpdateDTO patientUpdateDTO);
+	public Patient updatePatient(String id, PatientDTO patientUpdateDTO);
 
 	public Patient getPatient(String id);
 

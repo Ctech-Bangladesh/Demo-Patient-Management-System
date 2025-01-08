@@ -3,21 +3,21 @@ package com.pms.service;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pms.PatientDTO.PatientUpdateDTO;
+import com.pms.PatientDTO.PatientDTO;
 import com.pms.entity.Patient;
-//import com.pms.repository.PatientRepository;
 import com.pms.repository.PatientRepositoryMongo;
 
-//import jakarta.persistence.EntityNotFoundException;
-
+@RequiredArgsConstructor
 @Service
-public class PatientServiceImp implements  PatientService{
+public class PatientServiceImpl implements  PatientService{
 
-	@Autowired
-	private PatientRepositoryMongo patientRepository;
+
+	private final PatientRepositoryMongo patientRepository;
 
 	@Override
 	public List<Patient> getAllPatients() {
@@ -39,7 +39,7 @@ public class PatientServiceImp implements  PatientService{
 	}
 	
 	@Override
-	public Patient updatePatient(String id, PatientUpdateDTO patientUpdateDTO) {
+	public Patient updatePatient(String id, PatientDTO patientUpdateDTO) {
 		Optional<Patient> patientOpt = patientRepository.findById(id);
 		if (!patientOpt.isPresent()) {
 			throw new NoSuchElementException ("Patient with ID " + id + " not found.");

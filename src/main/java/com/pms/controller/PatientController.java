@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.pms.PatientDTO.PatientUpdateDTO;
+import com.pms.PatientDTO.PatientDTO;
 import com.pms.entity.Patient;
 import com.pms.service.PatientService;
 
@@ -40,7 +40,7 @@ public class PatientController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Patient> updatePatient(@PathVariable("id") String id,
-                                                 @RequestBody PatientUpdateDTO patientUpdateDTO) {
+                                                 @RequestBody PatientDTO patientUpdateDTO) {
         Patient updatedPatient = patientService.updatePatient(id, patientUpdateDTO);
         return ResponseEntity.ok(updatedPatient);
     }
