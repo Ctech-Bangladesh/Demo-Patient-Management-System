@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/patient")
+@RequestMapping("/api/patients")
 public class PatientController {
 
   private final PatientService patientService;
@@ -37,8 +37,8 @@ public class PatientController {
 
   @PutMapping("/{id}")
   public ResponseEntity<PatientDTO> updatePatient(
-      @PathVariable("id") String id, @RequestBody PatientDTO patientUpdateDTO) {
+      @PathVariable("id") String id, @RequestBody PatientDTO patientDTO) {
 
-    return ResponseEntity.ok(patientService.updatePatient(id, patientUpdateDTO));
+    return ResponseEntity.ok(patientService.updatePatient(id, patientDTO));
   }
 }
