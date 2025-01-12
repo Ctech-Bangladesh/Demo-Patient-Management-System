@@ -13,7 +13,7 @@ public interface PatientService {
 
     public void deletePatient(String id);
 
-    public PatientDTO updatePatient(String id, PatientDTO patientUpdateDTO);
+    public PatientDTO updatePatient(String id, PatientDTO patientDTO);
 
     public PatientDTO getPatient(String id);
 

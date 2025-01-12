@@ -48,15 +48,15 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public PatientDTO updatePatient(String id, PatientDTO patientUpdateDTO) {
+    public PatientDTO updatePatient(String id, PatientDTO patientDTO) {
         Optional<Patient> patientOpt = patientRepository.findById(id);
         if (patientOpt.isEmpty()) {
             throw new NoSuchElementException("Patient with ID " + id + " not found.");
         }
 
         Patient patient = patientOpt.get();
-        patient.setName(patientUpdateDTO.getName());
-        patient.setAge(patientUpdateDTO.getAge());
+        patient.setName(patientDTO.getName());
+        patient.setAge(patientDTO.getAge());
 
         return modelMapper.map(patientRepository.save(patient), PatientDTO.class);
     }
